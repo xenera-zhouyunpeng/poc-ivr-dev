@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Running Java ${{ matrix.java }} compile
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
           java-version: 17
       - name: Cache Maven 依赖
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -27,7 +27,7 @@ jobs:
       - name: compile code
         run: mvn compile
       - name: Deploy the JAR file to the remote server
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
